@@ -1658,6 +1658,17 @@
 // Turn off the display blinking that warns about possible accuracy reduction
 //#define DISABLE_REDUCED_ACCURACY_WARNING
 
+// invert values if connectors are reversed
+// I know it's not elegant, but somehow anything more
+// advanced breaks stepper.cpp down the line
+#if ENABLED(KNUTWURST_REV_CONNECTORS)
+  #define DIR_BOOL_TRUE false
+  #define DIR_BOOL_FALSE true
+#else
+  #define DIR_BOOL_TRUE true
+  #define DIR_BOOL_FALSE false
+#endif
+
 // @section extruder
 
 #define DISABLE_E false             // Disable the extruder when not stepping
@@ -1668,194 +1679,194 @@
 #if DISABLED(KNUTWURST_TMC)
   #if ANY(KNUTWURST_MEGA, KNUTWURST_MEGA_S, KNUTWURST_MEGA_X)
     // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-    #define INVERT_X_DIR true // set to true for stock drivers or TMC2208 with reversed connectors
-    #define INVERT_Y_DIR false // set to false for stock drivers or TMC2208 with reversed connectors
-    #define INVERT_Z_DIR false // set to false for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_X_DIR DIR_BOOL_TRUE // set to true for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_Y_DIR DIR_BOOL_FALSE // set to false for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_Z_DIR DIR_BOOL_FALSE // set to false for stock drivers or TMC2208 with reversed connectors
 
     // @section extruder
 
     // For direct drive extruder v9 set to true, for geared extruder set to false.
     #if ENABLED(KNUTWURST_BMG)
-      #define INVERT_E0_DIR true // set to false for stock drivers or TMC2208 with reversed connectors
+      #define INVERT_E0_DIR DIR_BOOL_TRUE // set to false for stock drivers or TMC2208 with reversed connectors
     #else
-      #define INVERT_E0_DIR false // set to false for stock drivers or TMC2208 with reversed connectors
+      #define INVERT_E0_DIR DIR_BOOL_FALSE // set to false for stock drivers or TMC2208 with reversed connectors
     #endif
 
-    #define INVERT_E1_DIR false // set to false for stock drivers or TMC2208 with reversed connectors
-    #define INVERT_E2_DIR false
-    #define INVERT_E3_DIR false
-    #define INVERT_E4_DIR false
-    #define INVERT_E5_DIR false
-    #define INVERT_E6_DIR false
-    #define INVERT_E7_DIR false
+    #define INVERT_E1_DIR DIR_BOOL_FALSE // set to false for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_E2_DIR DIR_BOOL_FALSE
+    #define INVERT_E3_DIR DIR_BOOL_FALSE
+    #define INVERT_E4_DIR DIR_BOOL_FALSE
+    #define INVERT_E5_DIR DIR_BOOL_FALSE
+    #define INVERT_E6_DIR DIR_BOOL_FALSE
+    #define INVERT_E7_DIR DIR_BOOL_FALSE
   #endif
 
   #if ENABLED(KNUTWURST_MEGA_P)
     // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-    #define INVERT_X_DIR false // set to true for stock drivers or TMC2208 with reversed connectors
-    #define INVERT_Y_DIR true // set to false for stock drivers or TMC2208 with reversed connectors
-    #define INVERT_Z_DIR false // set to false for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_X_DIR DIR_BOOL_FALSE // set to true for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_Y_DIR DIR_BOOL_TRUE // set to false for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_Z_DIR DIR_BOOL_FALSE // set to false for stock drivers or TMC2208 with reversed connectors
 
     // @section extruder
 
     // For direct drive extruder v9 set to true, for geared extruder set to false.
     #if ENABLED(KNUTWURST_BMG)
-      #define INVERT_E0_DIR false // set to false for stock drivers or TMC2208 with reversed connectors
+      #define INVERT_E0_DIR DIR_BOOL_FALSE // set to false for stock drivers or TMC2208 with reversed connectors
     #else
-      #define INVERT_E0_DIR true // set to false for stock drivers or TMC2208 with reversed connectors
+      #define INVERT_E0_DIR DIR_BOOL_TRUE // set to false for stock drivers or TMC2208 with reversed connectors
     #endif
 
-    #define INVERT_E1_DIR false // set to false for stock drivers or TMC2208 with reversed connectors
-    #define INVERT_E2_DIR false
-    #define INVERT_E3_DIR false
-    #define INVERT_E4_DIR false
-    #define INVERT_E5_DIR false
-    #define INVERT_E6_DIR false
-    #define INVERT_E7_DIR false
+    #define INVERT_E1_DIR DIR_BOOL_FALSE // set to false for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_E2_DIR DIR_BOOL_FALSE
+    #define INVERT_E3_DIR DIR_BOOL_FALSE
+    #define INVERT_E4_DIR DIR_BOOL_FALSE
+    #define INVERT_E5_DIR DIR_BOOL_FALSE
+    #define INVERT_E6_DIR DIR_BOOL_FALSE
+    #define INVERT_E7_DIR DIR_BOOL_FALSE
   #endif
 
   #if ENABLED(KNUTWURST_CHIRON)
     // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-    #define INVERT_X_DIR true // set to true for stock drivers or TMC2208 with reversed connectors
-    #define INVERT_Y_DIR true // set to false for stock drivers or TMC2208 with reversed connectors
-    #define INVERT_Z_DIR true // set to false for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_X_DIR DIR_BOOL_TRUE // set to true for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_Y_DIR DIR_BOOL_TRUE // set to false for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_Z_DIR DIR_BOOL_TRUE // set to false for stock drivers or TMC2208 with reversed connectors
 
     // @section extruder
 
     // For direct drive extruder v9 set to true, for geared extruder set to false.
     #if ENABLED(KNUTWURST_BMG)
-      #define INVERT_E0_DIR true // set to false for stock drivers or TMC2208 with reversed connectors
+      #define INVERT_E0_DIR DIR_BOOL_TRUE // set to false for stock drivers or TMC2208 with reversed connectors
     #else
-      #define INVERT_E0_DIR false // set to false for stock drivers or TMC2208 with reversed connectors
+      #define INVERT_E0_DIR DIR_BOOL_FALSE // set to false for stock drivers or TMC2208 with reversed connectors
     #endif
 
-    #define INVERT_E1_DIR true // set to false for stock drivers or TMC2208 with reversed connectors
-    #define INVERT_E2_DIR false
-    #define INVERT_E3_DIR false
-    #define INVERT_E4_DIR false
-    #define INVERT_E5_DIR false
-    #define INVERT_E6_DIR false
-    #define INVERT_E7_DIR false
+    #define INVERT_E1_DIR DIR_BOOL_TRUE // set to false for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_E2_DIR DIR_BOOL_FALSE
+    #define INVERT_E3_DIR DIR_BOOL_FALSE
+    #define INVERT_E4_DIR DIR_BOOL_FALSE
+    #define INVERT_E5_DIR DIR_BOOL_FALSE
+    #define INVERT_E6_DIR DIR_BOOL_FALSE
+    #define INVERT_E7_DIR DIR_BOOL_FALSE
   #endif
 
   #if ENABLED(KNUTWURST_4MAXP2)
     // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-    #define INVERT_X_DIR false // set to true for stock drivers or TMC2208 with reversed connectors
-    #define INVERT_Y_DIR true // set to false for stock drivers or TMC2208 with reversed connectors
-    #define INVERT_Z_DIR false // set to false for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_X_DIR DIR_BOOL_FALSE // set to true for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_Y_DIR DIR_BOOL_TRUE // set to false for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_Z_DIR DIR_BOOL_FALSE // set to false for stock drivers or TMC2208 with reversed connectors
 
     // @section extruder
 
     // For direct drive extruder v9 set to true, for geared extruder set to false.
     #if ENABLED(KNUTWURST_BMG)
-      #define INVERT_E0_DIR false // set to false for stock drivers or TMC2208 with reversed connectors
+      #define INVERT_E0_DIR DIR_BOOL_FALSE // set to false for stock drivers or TMC2208 with reversed connectors
     #else
-      #define INVERT_E0_DIR true // set to false for stock drivers or TMC2208 with reversed connectors
+      #define INVERT_E0_DIR DIR_BOOL_TRUE // set to false for stock drivers or TMC2208 with reversed connectors
     #endif
-    #define INVERT_E1_DIR true // set to false for stock drivers or TMC2208 with reversed connectors
-    #define INVERT_E2_DIR false
-    #define INVERT_E3_DIR false
-    #define INVERT_E4_DIR false
-    #define INVERT_E5_DIR false
-    #define INVERT_E6_DIR false
-    #define INVERT_E7_DIR false
+    #define INVERT_E1_DIR DIR_BOOL_TRUE // set to false for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_E2_DIR DIR_BOOL_FALSE
+    #define INVERT_E3_DIR DIR_BOOL_FALSE
+    #define INVERT_E4_DIR DIR_BOOL_FALSE
+    #define INVERT_E5_DIR DIR_BOOL_FALSE
+    #define INVERT_E6_DIR DIR_BOOL_FALSE
+    #define INVERT_E7_DIR DIR_BOOL_FALSE
   #endif
 #endif
 
 #if ENABLED(KNUTWURST_TMC)
   #if ANY(KNUTWURST_MEGA, KNUTWURST_MEGA_S, KNUTWURST_MEGA_X)
     // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-    #define INVERT_X_DIR false // set to true for stock drivers or TMC2208 with reversed connectors
-    #define INVERT_Y_DIR true // set to false for stock drivers or TMC2208 with reversed connectors
-    #define INVERT_Z_DIR true // set to false for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_X_DIR DIR_BOOL_FALSE // set to true for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_Y_DIR DIR_BOOL_TRUE // set to false for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_Z_DIR DIR_BOOL_TRUE // set to false for stock drivers or TMC2208 with reversed connectors
 
     // @section extruder
 
     // For direct drive extruder v9 set to true, for geared extruder set to false.
     #if ENABLED(KNUTWURST_BMG)
-      #define INVERT_E0_DIR false // set to false for stock drivers or TMC2208 with reversed connectors
+      #define INVERT_E0_DIR DIR_BOOL_FALSE // set to false for stock drivers or TMC2208 with reversed connectors
     #else
-      #define INVERT_E0_DIR true // set to false for stock drivers or TMC2208 with reversed connectors
+      #define INVERT_E0_DIR DIR_BOOL_TRUE // set to false for stock drivers or TMC2208 with reversed connectors
     #endif
 
-    #define INVERT_E1_DIR true // set to false for stock drivers or TMC2208 with reversed connectors
-    #define INVERT_E2_DIR false
-    #define INVERT_E3_DIR false
-    #define INVERT_E4_DIR false
-    #define INVERT_E5_DIR false
-    #define INVERT_E6_DIR false
-    #define INVERT_E7_DIR false
+    #define INVERT_E1_DIR DIR_BOOL_TRUE // set to false for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_E2_DIR DIR_BOOL_FALSE
+    #define INVERT_E3_DIR DIR_BOOL_FALSE
+    #define INVERT_E4_DIR DIR_BOOL_FALSE
+    #define INVERT_E5_DIR DIR_BOOL_FALSE
+    #define INVERT_E6_DIR DIR_BOOL_FALSE
+    #define INVERT_E7_DIR DIR_BOOL_FALSE
   #endif
 
   #if ENABLED(KNUTWURST_MEGA_P)
     // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-    #define INVERT_X_DIR false // set to true for stock drivers or TMC2208 with reversed connectors
-    #define INVERT_Y_DIR true // set to false for stock drivers or TMC2208 with reversed connectors
-    #define INVERT_Z_DIR true // set to false for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_X_DIR DIR_BOOL_FALSE // set to true for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_Y_DIR DIR_BOOL_TRUE // set to false for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_Z_DIR DIR_BOOL_TRUE // set to false for stock drivers or TMC2208 with reversed connectors
 
     // @section extruder
 
     // For direct drive extruder v9 set to true, for geared extruder set to false.
     #if ENABLED(KNUTWURST_BMG)
-      #define INVERT_E0_DIR true // set to false for stock drivers or TMC2208 with reversed connectors
+      #define INVERT_E0_DIR DIR_BOOL_TRUE // set to false for stock drivers or TMC2208 with reversed connectors
     #else
-      #define INVERT_E0_DIR false // set to false for stock drivers or TMC2208 with reversed connectors
+      #define INVERT_E0_DIR DIR_BOOL_FALSE // set to false for stock drivers or TMC2208 with reversed connectors
     #endif
 
-    #define INVERT_E1_DIR true // set to false for stock drivers or TMC2208 with reversed connectors
-    #define INVERT_E2_DIR false
-    #define INVERT_E3_DIR false
-    #define INVERT_E4_DIR false
-    #define INVERT_E5_DIR false
-    #define INVERT_E6_DIR false
-    #define INVERT_E7_DIR false
+    #define INVERT_E1_DIR DIR_BOOL_TRUE // set to false for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_E2_DIR DIR_BOOL_FALSE
+    #define INVERT_E3_DIR DIR_BOOL_FALSE
+    #define INVERT_E4_DIR DIR_BOOL_FALSE
+    #define INVERT_E5_DIR DIR_BOOL_FALSE
+    #define INVERT_E6_DIR DIR_BOOL_FALSE
+    #define INVERT_E7_DIR DIR_BOOL_FALSE
   #endif
 
   #if ENABLED(KNUTWURST_CHIRON)
   // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-    #define INVERT_X_DIR false // set to true for stock drivers or TMC2208 with reversed connectors
-    #define INVERT_Y_DIR false // set to false for stock drivers or TMC2208 with reversed connectors
-    #define INVERT_Z_DIR false // set to false for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_X_DIR DIR_BOOL_FALSE // set to true for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_Y_DIR DIR_BOOL_FALSE // set to false for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_Z_DIR DIR_BOOL_FALSE // set to false for stock drivers or TMC2208 with reversed connectors
 
     // @section extruder
 
     // For direct drive extruder v9 set to true, for geared extruder set to false.
     #if ENABLED(KNUTWURST_BMG)
-      #define INVERT_E0_DIR false // set to false for stock drivers or TMC2208 with reversed connectors
+      #define INVERT_E0_DIR DIR_BOOL_FALSE // set to false for stock drivers or TMC2208 with reversed connectors
     #else
-      #define INVERT_E0_DIR true // set to false for stock drivers or TMC2208 with reversed connectors
+      #define INVERT_E0_DIR DIR_BOOL_TRUE // set to false for stock drivers or TMC2208 with reversed connectors
     #endif
 
-    #define INVERT_E1_DIR false // set to false for stock drivers or TMC2208 with reversed connectors
-    #define INVERT_E2_DIR false
-    #define INVERT_E3_DIR false
-    #define INVERT_E4_DIR false
-    #define INVERT_E5_DIR false
-    #define INVERT_E6_DIR false
-    #define INVERT_E7_DIR false
+    #define INVERT_E1_DIR DIR_BOOL_FALSE // set to false for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_E2_DIR DIR_BOOL_FALSE
+    #define INVERT_E3_DIR DIR_BOOL_FALSE
+    #define INVERT_E4_DIR DIR_BOOL_FALSE
+    #define INVERT_E5_DIR DIR_BOOL_FALSE
+    #define INVERT_E6_DIR DIR_BOOL_FALSE
+    #define INVERT_E7_DIR DIR_BOOL_FALSE
   #endif
 
   #if ENABLED(KNUTWURST_4MAXP2)
     // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-    #define INVERT_X_DIR false // set to true for stock drivers or TMC2208 with reversed connectors
-    #define INVERT_Y_DIR true // set to false for stock drivers or TMC2208 with reversed connectors
-    #define INVERT_Z_DIR true // set to false for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_X_DIR DIR_BOOL_FALSE // set to true for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_Y_DIR DIR_BOOL_TRUE // set to false for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_Z_DIR DIR_BOOL_TRUE // set to false for stock drivers or TMC2208 with reversed connectors
 
     // @section extruder
 
     // For direct drive extruder v9 set to true, for geared extruder set to false.
     #if ENABLED(KNUTWURST_BMG)
-      #define INVERT_E0_DIR true // set to false for stock drivers or TMC2208 with reversed connectors
+      #define INVERT_E0_DIR DIR_BOOL_TRUE // set to false for stock drivers or TMC2208 with reversed connectors
     #else
-      #define INVERT_E0_DIR false // set to false for stock drivers or TMC2208 with reversed connectors
+      #define INVERT_E0_DIR DIR_BOOL_FALSE // set to false for stock drivers or TMC2208 with reversed connectors
     #endif
-    #define INVERT_E1_DIR false // set to false for stock drivers or TMC2208 with reversed connectors
-    #define INVERT_E2_DIR false
-    #define INVERT_E3_DIR false
-    #define INVERT_E4_DIR false
-    #define INVERT_E5_DIR false
-    #define INVERT_E6_DIR false
-    #define INVERT_E7_DIR false
+    #define INVERT_E1_DIR DIR_BOOL_FALSE // set to false for stock drivers or TMC2208 with reversed connectors
+    #define INVERT_E2_DIR DIR_BOOL_FALSE
+    #define INVERT_E3_DIR DIR_BOOL_FALSE
+    #define INVERT_E4_DIR DIR_BOOL_FALSE
+    #define INVERT_E5_DIR DIR_BOOL_FALSE
+    #define INVERT_E6_DIR DIR_BOOL_FALSE
+    #define INVERT_E7_DIR DIR_BOOL_FALSE
   #endif
 #endif
 
